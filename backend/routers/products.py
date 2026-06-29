@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from database import get_db
 from models import Product, Review
-from schema import ProductOut, ProductDetail, ReviewOut
+from schema import ProductOut, ProductDetail, ProductCreate
+from auth_utils import get_current_admin
 
 router = APIRouter(prefix="/api/products", tags=["Products"])
 
@@ -40,3 +41,33 @@ def get_product(product_id: int, db: Session = Depends(get_db)):
         average_rating=round(avg, 1) if avg else None,
         reviews=product.reviews
     )
+
+
+@router.post("", response_model=ProductOut, status_code=status.HTTP_201_CREATED)
+def create_product(data: ProductCreate, db: Session = Depends(get_db), current_admin=Depends(get_current_admin)):
+    new_product = Product(
+        title=data.title,
+        description=data.description,
+        image_url=data.image_url
+    )
+    db.add(new_product)
+    db.commit()
+    db.refresh(new_product)
+    return ProductOut(
+        id=new_product.id,
+        title=new_product.title,
+        description=new_product.description,
+        image_url=new_product.image_url,
+        average_rating=None,
+        review_count=0
+    )
+
+
+@router.delete("/{product_id}", status_code=status.HTTP_200_OK)
+def delete_product(product_id: int, db: Session = Depends(get_db), current_admin=Depends(get_current_admin)):
+    product = db.query(Product).filter(Product.id == product_id).first()
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+    db.delete(product)
+    db.commit()
+    return {"message": "Product deleted successfully"}

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base
-from routers import products, review
+from routers import products, review, auth
 
 Base.metadata.create_all(bind=engine)  # auto-creates tables
 
@@ -14,5 +14,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth.router)
 app.include_router(products.router)
 app.include_router(review.router)

@@ -5,16 +5,29 @@ from datetime import datetime
 class UserCreate(BaseModel):
     name: str
     email: EmailStr
+    password: str
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
 
 class UserOut(BaseModel):
     id: int
     name: str
+    email: EmailStr
+    is_admin: bool
     class Config:
         from_attributes = True
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    email: Optional[str] = None
+
 class ReviewCreate(BaseModel):
     product_id: int
-    user_id: int
     rating: int  # 1-5
     comment: Optional[str] = None
 
@@ -30,6 +43,11 @@ class ReviewOut(BaseModel):
     created_at: datetime
     class Config:
         from_attributes = True
+
+class ProductCreate(BaseModel):
+    title: str
+    description: Optional[str] = None
+    image_url: Optional[str] = None
 
 class ProductOut(BaseModel):
     id: int

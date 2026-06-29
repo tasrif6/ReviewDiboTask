@@ -1,3 +1,3 @@
-from . import products, review
+from . import products, review, auth
 
-__all__ = ["products", "review"]
+__all__ = ["products", "review", "auth"]
