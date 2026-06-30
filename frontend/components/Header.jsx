@@ -20,7 +20,7 @@ export default function Header() {
   };
 
   return (
-    <header className="border-b bg-white py-4 px-6 flex justify-between items-center shadow-sm">
+    <header className="border-b bg-gray-300 py-4 px-6 flex justify-between items-center shadow-sm">
       <Link
         href="/"
         className="text-xl font-bold text-blue-600 hover:text-blue-800"

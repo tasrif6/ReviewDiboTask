@@ -41,11 +41,11 @@ export default function ReviewForm({ productId, onSuccess }) {
           onChange={(e) => setRating(Number(e.target.value))}
           className="border rounded-lg px-3 py-2 text-sm bg-white text-black"
         >
-          {[5, 4, 3, 2, 1].map((r) => {
+          {[5, 4, 3, 2, 1].map((r) => (
             <option key={r} value={r}>
               {r} {"⭐"}
-            </option>;
-          })}
+            </option>
+          ))}
         </select>
       </div>
 
