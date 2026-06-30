@@ -67,17 +67,19 @@ export default function ReviewList({
 
             {isEditing ? (
               <div className="mt-2 flex flex-col gap-2">
-                <select
-                  value={editRating}
-                  onChange={(e) => setEditRating(Number(e.target.value))}
-                  className="border rounded-lg px-3 py-2 text-sm bg-white text-black"
-                >
-                  {[5, 4, 3, 2, 1].map((rating) => (
-                    <option key={rating} value={rating}>
-                      {rating} ⭐
-                    </option>
-                  ))}
-                </select>
+                <div className="flex">
+                  <select
+                    value={editRating}
+                    onChange={(e) => setEditRating(Number(e.target.value))}
+                    className="border rounded-lg px-2 py-2 text-sm bg-white text-black"
+                  >
+                    {[5, 4, 3, 2, 1].map((rating) => (
+                      <option key={rating} value={rating}>
+                        {rating} ⭐
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
                 <textarea
                   value={editComment}
@@ -115,7 +117,7 @@ export default function ReviewList({
             )}
 
             {canManage && !isEditing && (
-              <div className="absolute top-4 right-4 flex gap-2">
+              <div className="top-4 right-4 flex gap-2">
                 <button
                   onClick={() => startEdit(r)}
                   className="bg-emerald-700 text-white text-xs font-semibold px-2.5 py-1 rounded cursor-pointer transition"

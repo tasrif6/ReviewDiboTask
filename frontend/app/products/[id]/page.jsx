@@ -79,7 +79,7 @@ export default function ProductPage() {
     <main className="max-w-3xl mx-auto px-4 py-8">
       <Link
         href="/"
-        className="text-blue-600 text-sm hover:underline mb-6 inline-block"
+        className="text-white text-sm bg-blue-600 py-2 rounded-lg px-2 mb-6 inline-block hover:bg-blue-800"
       >
         ← Back to Products
       </Link>
