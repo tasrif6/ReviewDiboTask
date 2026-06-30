@@ -99,7 +99,7 @@ export default function HomePage() {
             className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end"
           >
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">
+              <label className="block text-xs font-semibold text-black mb-1">
                 Product Title*
               </label>
               <input

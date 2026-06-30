@@ -1,7 +1,12 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { getProduct, getCurrentUser, deleteReview } from "@/lib/api";
+import {
+  getProduct,
+  getCurrentUser,
+  deleteReview,
+  updateReview,
+} from "@/lib/api";
 import StarRating from "@/components/StarRating";
 import ReviewList from "@/components/ReviewList";
 import ReviewForm from "@/components/ReviewForm";
@@ -45,6 +50,15 @@ export default function ProductPage() {
     }
   };
 
+  const handleUpdateReview = async (reviewId, updatedData) => {
+    try {
+      await updateReview(reviewId, updatedData);
+      await fetchProduct();
+    } catch (err) {
+      alert("Failed to update review: " + err.message);
+    }
+  };
+
   if (loading)
     return (
       <div className="text-center py-20 text-gray-500">Loading product...</div>
@@ -76,14 +90,14 @@ export default function ProductPage() {
           <img
             src={product.image_url}
             alt={product.title}
-            className="w-full h-64 object-cover rounded-xl mb-4"
+            className="w-full h-64 object-cover rounded-xl mb-4 text-black"
           />
         ) : (
           <div className="w-full h-40 bg-gray-200 flex items-center justify-center text-gray-400 font-semibold rounded-xl mb-4">
             No Image Available
           </div>
         )}
-        <h1 className="text-2xl font-bold">{product.title}</h1>
+        <h1 className="text-2xl font-bold text-black">{product.title}</h1>
         {product.description && (
           <p className="text-gray-600 mt-2">{product.description}</p>
         )}
@@ -132,6 +146,7 @@ export default function ProductPage() {
           reviews={product.reviews || []}
           currentUser={user}
           onDeleteReview={handleDeleteReview}
+          onUpdateReview={handleUpdateReview}
         />
       </div>
     </main>

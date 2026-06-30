@@ -73,6 +73,13 @@ export async function createReview(reviewData) {
   });
 }
 
+export async function updateReview(id, reviewData) {
+  return apiFetch(`/api/reviews/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(reviewData),
+  });
+}
+
 export async function deleteReview(id) {
   return apiFetch(`/api/reviews/${id}`, {
     method: "DELETE",
