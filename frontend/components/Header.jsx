@@ -16,20 +16,28 @@ export default function Header() {
     logoutUser();
     setUser(null);
     router.push("/");
-    // Force a reload to refresh all components and clean state
     window.location.reload();
   };
 
   return (
     <header className="border-b bg-white py-4 px-6 flex justify-between items-center shadow-sm">
-      <Link href="/" className="text-xl font-bold text-blue-600 hover:text-blue-800">
-        Review Dibo
+      <Link
+        href="/"
+        className="text-xl font-bold text-blue-600 hover:text-blue-800"
+      >
+        Product Review Project
       </Link>
       <nav className="flex items-center gap-4 text-sm">
+        <Link
+          href="/"
+          className="text-blue-600 cursor-pointer hover:underline font-bold"
+        >
+          Home
+        </Link>
         {user ? (
           <div className="flex items-center gap-4">
             <span className="text-gray-700">
-              Welcome, <strong>{user.name}</strong>
+              <strong>{user.name}</strong>
               {user.is_admin && (
                 <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded font-semibold ml-1.5">
                   Admin
@@ -45,10 +53,16 @@ export default function Header() {
           </div>
         ) : (
           <div className="flex items-center gap-4">
-            <Link href="/login" className="text-blue-600 hover:underline">
+            <Link
+              href="/login"
+              className="text-blue-600 hover:underline cursor-pointer font-bold"
+            >
               Login
             </Link>
-            <Link href="/register" className="bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700 transition">
+            <Link
+              href="/register"
+              className="hover:underline cursor-pointer font-bold text-white px-3 py-1.5 rounded bg-blue-700 transition"
+            >
               Register
             </Link>
           </div>

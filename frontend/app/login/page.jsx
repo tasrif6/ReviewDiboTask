@@ -33,11 +33,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-16 p-6 border rounded-xl bg-white shadow">
+    <div className="max-w-md mx-auto mt-16 p-6 border rounded-xl bg-black shadow">
       <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div>
-          <label className="block text-sm font-medium mb-1">Email Address</label>
+          <label className="block text-sm font-medium mb-1">
+            Email Address
+          </label>
           <input
             type="email"
             required

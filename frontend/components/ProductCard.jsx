@@ -12,30 +12,33 @@ export default function ProductCard({ product, isAdmin, onDelete }) {
           Delete
         </button>
       )}
-      
+
       {product.image_url ? (
         <img
           src={product.image_url}
           alt={product.title}
-          className="w-full h-40 object-cover rounded-lg mb-2"
+          className="w-full h-40 object-cover rounded-lg mb-2 text-gray-800"
         />
       ) : (
-        <div className="w-full h-40 bg-gray-100 flex items-center justify-center text-gray-400 font-semibold rounded-lg mb-2">
+        <div className="w-full h-40 bg-black flex items-center justify-center text-black font-semibold rounded-lg mb-2">
           No Image
         </div>
       )}
-      
-      <h2 className="text-lg font-semibold pr-16 truncate">{product.title}</h2>
-      
+
+      <h2 className="text-lg font-semibold pr-16 truncate text-gray-800">
+        {product.title}
+      </h2>
+
       <div className="flex items-center gap-2">
         <StarRating rating={product.average_rating || 0} />
-        <span className="text-sm text-gray-500">
-          {product.average_rating ? product.average_rating : "No"} · {product.review_count} reviews
+        <span className="text-sm text-black">
+          {product.average_rating ? product.average_rating : "No"} ·{" "}
+          {product.review_count} reviews
         </span>
       </div>
-      
+
       {product.description && (
-        <p className="text-sm text-gray-600 line-clamp-2 mt-1 mb-2">
+        <p className="text-sm text-gray-800 line-clamp-2 mt-1 mb-2">
           {product.description}
         </p>
       )}

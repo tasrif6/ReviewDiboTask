@@ -17,13 +17,13 @@ export default function RegisterPage() {
     try {
       // 1. Register user
       await registerUser(form.name, form.email, form.password);
-      
+
       // 2. Automatically log in user after registering
       await loginUser(form.email, form.password);
-      
+
       // 3. Redirect to home page
       router.push("/");
-      
+
       // Force reload to update header state
       setTimeout(() => {
         window.location.reload();
@@ -36,7 +36,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-16 p-6 border rounded-xl bg-white shadow">
+    <div className="max-w-md mx-auto mt-16 p-6 border rounded-xl bg-black shadow">
       <h1 className="text-2xl font-bold mb-6 text-center">Register</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div>
@@ -51,7 +51,9 @@ export default function RegisterPage() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Email Address</label>
+          <label className="block text-sm font-medium mb-1">
+            Email Address
+          </label>
           <input
             type="email"
             required

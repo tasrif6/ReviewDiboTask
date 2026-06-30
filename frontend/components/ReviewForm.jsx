@@ -29,32 +29,34 @@ export default function ReviewForm({ productId, onSuccess }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 bg-white border rounded-xl p-5 shadow-sm">
-      <h3 className="text-lg font-semibold">Write a Review</h3>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-3 bg-white border rounded-xl p-5 shadow-sm"
+    >
+      <h3 className="text-lg font-semibold text-black">Write a Review</h3>
 
-      <div className="flex flex-col gap-1">
-        <label className="text-xs font-semibold text-gray-600">Rating</label>
+      <div className="flex gap-1">
         <select
           value={rating}
           onChange={(e) => setRating(Number(e.target.value))}
-          className="border rounded-lg px-3 py-2 text-sm bg-white"
+          className="border rounded-lg px-3 py-2 text-sm bg-white text-black"
         >
-          {[5, 4, 3, 2, 1].map((r) => (
+          {[5, 4, 3, 2, 1].map((r) => {
             <option key={r} value={r}>
-              {"⭐".repeat(r)} ({r})
-            </option>
-          ))}
+              {r} {"⭐"}
+            </option>;
+          })}
         </select>
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-xs font-semibold text-gray-600">Comment (Optional)</label>
+        <label className="text-sm font-semibold text-black">Comment</label>
         <textarea
           placeholder="What did you like or dislike about this product?"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           rows={3}
-          className="border rounded-lg px-3 py-2 text-sm resize-none bg-white"
+          className="border rounded-lg px-3 py-2 text-sm resize-none bg-white text-black"
         />
       </div>
 
@@ -63,7 +65,7 @@ export default function ReviewForm({ productId, onSuccess }) {
       <button
         type="submit"
         disabled={loading}
-        className="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition text-sm font-semibold disabled:opacity-50 cursor-pointer"
+        className="bg-green-600 text-white py-2 rounded-lg hover:bg-emerald-800 transition text-sm font-semibold disabled:opacity-50 cursor-pointer"
       >
         {loading ? "Submitting..." : "Submit Review"}
       </button>

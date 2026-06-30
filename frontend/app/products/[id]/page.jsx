@@ -45,7 +45,10 @@ export default function ProductPage() {
     }
   };
 
-  if (loading) return <div className="text-center py-20 text-gray-500">Loading product...</div>;
+  if (loading)
+    return (
+      <div className="text-center py-20 text-gray-500">Loading product...</div>
+    );
   if (error) {
     return (
       <div className="text-center py-20">
@@ -60,7 +63,10 @@ export default function ProductPage() {
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-8">
-      <Link href="/" className="text-blue-600 text-sm hover:underline mb-6 inline-block">
+      <Link
+        href="/"
+        className="text-blue-600 text-sm hover:underline mb-6 inline-block"
+      >
         ← Back to Products
       </Link>
 
@@ -78,28 +84,40 @@ export default function ProductPage() {
           </div>
         )}
         <h1 className="text-2xl font-bold">{product.title}</h1>
-        {product.description && <p className="text-gray-600 mt-2">{product.description}</p>}
+        {product.description && (
+          <p className="text-gray-600 mt-2">{product.description}</p>
+        )}
         <div className="flex items-center gap-2 mt-3">
           <StarRating rating={product.average_rating || 0} />
           <span className="text-sm text-gray-500">
-            {product.average_rating ? `${product.average_rating} out of 5` : "No rating yet"} ·{" "}
-            {product.reviews ? product.reviews.length : 0} reviews
+            {product.average_rating
+              ? `${product.average_rating} out of 5`
+              : "No rating yet"}{" "}
+            · {product.reviews ? product.reviews.length : 0} reviews
           </span>
         </div>
       </div>
 
-      {/* Review Form or Login Prompt */}
+      {/* Review Form or Login */}
       <div className="mb-8">
         {user ? (
           <ReviewForm productId={product.id} onSuccess={fetchProduct} />
         ) : (
           <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 text-center text-sm">
-            <p className="text-gray-700 mb-3">You must be logged in to write a review for this product.</p>
+            <p className="text-gray-700 mb-3">
+              You must be logged in to write a review for this product.
+            </p>
             <div className="flex justify-center gap-3">
-              <Link href="/login" className="bg-blue-600 text-white px-4 py-1.5 rounded-lg hover:bg-blue-700 transition font-semibold">
+              <Link
+                href="/login"
+                className="bg-blue-600 text-white px-4 py-1.5 rounded-lg hover:bg-blue-700 transition font-semibold"
+              >
                 Login
               </Link>
-              <Link href="/register" className="bg-white border border-gray-300 text-gray-700 px-4 py-1.5 rounded-lg hover:bg-gray-50 transition font-semibold">
+              <Link
+                href="/register"
+                className="bg-white border border-gray-300 text-gray-700 px-4 py-1.5 rounded-lg hover:bg-gray-50 transition font-semibold"
+              >
                 Register
               </Link>
             </div>
